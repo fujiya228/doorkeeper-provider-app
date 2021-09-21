@@ -1,6 +1,8 @@
 
 手元で試すために[doorkeeper-provider-app](https://github.com/doorkeeper-gem/doorkeeper-provider-app)をクローンしてDockerへ移行中
 
+## 起動
+
 ```
 docker-compose build
 ```
@@ -16,6 +18,16 @@ docker-compose build
 ```
 docker-compose up
 ```
+
+## token発行からAPI利用まで（Authorization Code Flow）
+
+1. http://localhost:3000/users/sign_up でサインアップ
+2. http://localhost:3000/oauth/applications/new でOAuthを使うアプリケーションを登録（APIクライアントの情報発行）（リダイレクト先は適当で良い）
+3. http://localhost:3000/oauth/authorize?client_id=AAA&redirect_uri=BBB&response_type=code&scope= へアクセスして認証（http://localhost:3000/oauth/applications/{application_id} の`Callback urls > Authorize のボタン`からも行ける）
+4. 認証すると設定したリダイレクト先にパラメータとしてcodeが渡されるのでメモ
+5. curlでtoken発行 `curl -X POST http://localhost:3000/oauth/token -d "code=AAA" -d "client_id=BBB" -d "client_secret=CCC" -d "grant_type=authorization_code" -d "redirect_uri=DDD"`
+6. API利用 `curl -X GET http://localhost:3000/api/v1/me.json -H "Authorization:Bearer AAA"`
+
 # Doorkeeper Provider App
 
 [![Build Status](https://api.travis-ci.org/doorkeeper-gem/doorkeeper-provider-app.svg?branch=master)](http://travis-ci.org/doorkeeper-gem/doorkeeper-provider-app)
