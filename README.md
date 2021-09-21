@@ -1,6 +1,22 @@
 
 手元で試すために[doorkeeper-provider-app](https://github.com/doorkeeper-gem/doorkeeper-provider-app)をクローンしてDockerへ移行中
 
+```
+docker-compose build
+```
+
+```
+docker-compose up
+```
+
+```
+./sh rake db:create
+```
+
+```
+./sh rake db:migrate
+```
+
 # Doorkeeper Provider App
 
 [![Build Status](https://api.travis-ci.org/doorkeeper-gem/doorkeeper-provider-app.svg?branch=master)](http://travis-ci.org/doorkeeper-gem/doorkeeper-provider-app)
