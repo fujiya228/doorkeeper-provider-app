@@ -6,10 +6,6 @@ docker-compose build
 ```
 
 ```
-docker-compose up
-```
-
-```
 ./sh rake db:create
 ```
 
@@ -17,6 +13,9 @@ docker-compose up
 ./sh rake db:migrate
 ```
 
+```
+docker-compose up
+```
 # Doorkeeper Provider App
 
 [![Build Status](https://api.travis-ci.org/doorkeeper-gem/doorkeeper-provider-app.svg?branch=master)](http://travis-ci.org/doorkeeper-gem/doorkeeper-provider-app)
